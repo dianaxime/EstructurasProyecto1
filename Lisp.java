@@ -91,4 +91,16 @@ public class Lisp {
             return miarray[n]/multiplicar(miarray, n-1);
         }
     }
+    public int car(int[] miarray){
+       int a;
+       a=miarray[0];
+       return a;
+    }
+    public int[] cdr(int[] miarray){
+        int[] newarray = new int[miarray.length-2];
+        for (int i=1; i<miarray.length; i++){
+            newarray[i-1] = miarray[i];
+        }
+        return newarray;
+    }
 }
