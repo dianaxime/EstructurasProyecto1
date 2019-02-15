@@ -31,7 +31,7 @@ public class Lisp {
         //recorre todos los numeros buscando uno menor
         for (int i=1; i<miarray.length; i++){
             //si hay uno menor, lo define como el nuevo menor
-            if (miarray[i].compareTo(mini)==1){
+            if (miarray[i].compareTo(mini)==-1){
                 mini = miarray[i];
             }
         }
