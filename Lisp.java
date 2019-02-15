@@ -5,13 +5,15 @@
  */
 package proyecto1;
 
+import java.util.Arrays;
+
 /**
  *
  * @author DIANA
  */
 public class Lisp {
      // Obtener el numero mayor 
-    public int max(int[] miarray){
+    public double max(int[] miarray){
         //supone que el primero es el mayor
         int maxi = miarray[0];
         //recorre todos los numeros buscando uno mayor
@@ -25,7 +27,7 @@ public class Lisp {
     }
     
      // Obtener el numero menor 
-    public int min(int[] miarray){
+    public double min(int[] miarray){
         //supone que el primero es el menor
         int mini = miarray[0];
         //recorre todos los numeros buscando uno menor
@@ -59,7 +61,7 @@ public class Lisp {
         }
         return resultado;
     }*/
-    public int suma (int[] miarray, int n){
+    public double suma (int[] miarray, int n){
         if (n==0){
             return miarray[n];
         }
@@ -67,31 +69,31 @@ public class Lisp {
             return suma(miarray, n-1)+miarray[n];
         }
     }
-    public int resta (int[] miarray, int n){
+    public double resta (int[] miarray, int n){
         if (n==0){
             return miarray[n];
         }
         else {
-            return miarray[n]-resta(miarray, n-1);
+            return resta(miarray, n-1)-miarray[n];
         }
     }
-    public int multiplicar (int[] miarray, int n){
+    public double multiplicar (int[] miarray, int n){
+       if (n==0){
+            return miarray[n];
+        }
+        else {
+            return multiplicar(miarray, n-1)*miarray[n];
+        }
+    }
+    public double dividir (int[] miarray, int n){
         if (n==0){
             return miarray[n];
         }
         else {
-            return miarray[n]*multiplicar(miarray, n-1);
+            return dividir(miarray, n-1)/miarray[n];
         }
     }
-    public int dividir (int[] miarray, int n){
-        if (n==0){
-            return miarray[n];
-        }
-        else {
-            return miarray[n]/multiplicar(miarray, n-1);
-        }
-    }
-    public int car(int[] miarray){
+    public double car(int[] miarray){
        int a;
        a=miarray[0];
        return a;

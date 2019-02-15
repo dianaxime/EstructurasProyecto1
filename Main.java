@@ -100,13 +100,16 @@ public class Main extends javax.swing.JFrame {
         try{
                 //elimina los espacios
                String partes[] = datos.split(" ");
-               int[] unarray = new int[partes.length];
-               int resultado = 0;
+               //for (String i : partes) System.out.print(i);
+               int[] unarray = new int[partes.length-1];
                //recorre las partes 
                for (int i=1; i<partes.length; i++){
                    unarray[i-1]=Integer.parseInt(partes[i]); 
+                   //System.out.println(partes[i-1]);
             }
                int n=unarray.length-1;
+               //for (int i : unarray) System.out.print(i);
+               double resultado = 0;
                switch (partes[0]){
                        case ("+"):
                            resultado = milisp.suma(unarray, n);
@@ -133,7 +136,9 @@ public class Main extends javax.swing.JFrame {
                            int[] resultado1;
                            resultado1 = milisp.cdr(unarray);
                            jTextArea1.setEditable(true);
-                           jTextArea1.append(resultado1 + "\n");
+                           for (int k=0; k<resultado1.length; k++){
+                               jTextArea1.append(resultado1[k] +","+ "\t");
+                           }
                            break;
                        
                    }
