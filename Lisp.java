@@ -11,13 +11,13 @@ package proyecto1;
  */
 public class Lisp {
      // Obtener el numero mayor 
-    public Comparable max(Comparable[] miarray){
+    public int max(int[] miarray){
         //supone que el primero es el mayor
-        Comparable maxi = miarray[0];
+        int maxi = miarray[0];
         //recorre todos los numeros buscando uno mayor
         for (int i=1; i<miarray.length; i++){
             //si hay uno mas alto, lo define como el nuevo mayor
-            if (miarray[i].compareTo(maxi)==1){
+            if (miarray[i]>maxi){
                 maxi = miarray[i];
             }
         }
@@ -25,13 +25,13 @@ public class Lisp {
     }
     
      // Obtener el numero menor 
-    public Comparable min(Comparable[] miarray){
+    public int min(int[] miarray){
         //supone que el primero es el menor
-        Comparable mini = miarray[0];
+        int mini = miarray[0];
         //recorre todos los numeros buscando uno menor
         for (int i=1; i<miarray.length; i++){
             //si hay uno menor, lo define como el nuevo menor
-            if (miarray[i].compareTo(mini)==-1){
+            if (miarray[i]<mini){
                 mini = miarray[i];
             }
         }
@@ -97,7 +97,7 @@ public class Lisp {
        return a;
     }
     public int[] cdr(int[] miarray){
-        int[] newarray = new int[miarray.length-2];
+        int[] newarray = new int[miarray.length];
         for (int i=1; i<miarray.length; i++){
             newarray[i-1] = miarray[i];
         }
