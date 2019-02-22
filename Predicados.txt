@@ -1,0 +1,33 @@
+T = True     NILL = Falso
+minusp = numeros negativos
+zerop =  si un numero es cero
+equal = si dos numeros son iguales
+atom = devuelve T cuando es un elemento y NIL cuando es una lista
+
+para hacer una lista en lisp
+setf nombreDeLaLista '(valor)
+
+setq es para agregarle un valor a una variable
+setq NombreVariable ' (valor)
+
+append concatena listas
+Ejemplo:
+(print (setf (b' (1 2 3)))
+(print (setf a'(4 5 6)))
+(append a b)
+
+cons, concatena el primer elemento y agrega los demas
+Ejemplo:
+(cons a b)
+((4 5 6) 1 2 3)
+
+list devuelve una lista
+Ejemplo:
+(print(list 1 2 3))
+(1 2 3)
+
+Member = busca el elemento proporcionado y devuelve a partir de ese elmento
+Ejemplo:
+(print(member 2 b))
+(2 3)
+Devuelve NIL si el elemento no esta en la lista
