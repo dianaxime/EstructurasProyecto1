@@ -1,7 +1,9 @@
 T = True     NILL = Falso
 minusp = numeros negativos
+plusp = numeros positivos
 zerop =  si un numero es cero
 equal = si dos numeros son iguales
+(print (equal (+ 2 2) 3))
 atom = devuelve T cuando es un elemento y NIL cuando es una lista
 
 para hacer una lista en lisp
@@ -31,3 +33,57 @@ Ejemplo:
 (print(member 2 b))
 (2 3)
 Devuelve NIL si el elemento no esta en la lista
+
+not devuelve T si es NIL
+y NIL si es T
+(print (not (zerop 0)))
+
+and retorna NIL si al menos uno es NIL
+y retorna T si todos son T
+
+or retorna T si al menos uno es T
+retorna NIL si todos son NIL
+
+(print (eval (+ 2 6) ))
+retorna el resultado de la operacion
+
+(print (quote (+ 5 7)))
+retorna la expresion
+
+(print (1+ 5 ))
+(print (1- 3))
+suma o resta uno a la expresion
+
+(print (cond ((zerop 0) (zerop 0) (zerop 0) 5)))
+retorna el ultimo valor en caso exista sino devuelve NIL o T segun sea el caso
+
+NO realiza una division sin alguno de estos valores antecesores
+(print (float (/ 22 7)) )
+
+(print (round (/ 22 7)) )
+
+eleva el primer termino al segundo
+(print (expt 5 2))
+
+raiz cuadrada de un numero
+(print (sqrt 9))
+
+eleva e a ese numero
+(print (exp 2))
+
+logaritmo natural de un numero
+(print (log 5))
+
+logaritmo del numero (primero) de base tal (segundo)
+(print (log 5 10))
+
+valor absoluto de un numero
+(print (abs -2))
+
+ya saben que es random
+(print (random 50))
+
+diferente o distinto de
+(print (/= 5 4 3 2))
+T si son diferentes
+NIL si son iguales
