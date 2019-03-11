@@ -25,14 +25,57 @@ public class Analizador {
             clasificar.read(bytes, 0, 1024);
             miprograma = miprograma.concat(new String(bytes)).trim().toUpperCase();
         }
-        simbolos = simbologia(miprograma);
+        simbolos = Simbologia(miprograma);
     }
     public Analizador (String clasificar){
         miprograma=clasificar;
-        simbolos = simbologia(miprograma);
+        simbolos = Simbologia(miprograma);
     }
-    public Vector <String> obtenersimbolos(){
+    public Vector <String> Obtenersimbolos(){
         return simbolos;
     }
-    
+    public Vector<String> Simbologia (String palabra){
+        int i = 0;
+        Vector <String> claves = new Vector <>();
+        if ( palabra.length() == 1 ){
+            claves.add(palabra);
+            return claves;
+	}
+	while (  i < palabra.length() ){
+            int j = i + 1;
+            if ( palabra.substring(i, j).matches(Patrones.LETRA) || palabra.substring(i, j).matches(Patrones.OPERADOR) ){
+		while ( palabra.substring(i,j + 1).matches(Patrones.LETRAS) || palabra.substring(i, j + 1).matches(Patrones.OPERADOR) ){
+			j++;
+		}
+		claves.add(palabra.substring(i,j));
+            } else if ( palabra.substring(i, j).matches(Patrones.SIMBOLO) ){
+		claves.add(palabra.substring(i,j));
+            }
+            i = j;
+	}
+	return claves;  
+    }
+    private int Final (Vector <String> mivector) throws IllegalArgumentException, ArrayIndexOutOfBoundsException{
+	if ( ! mivector.get(0).matches("[(]") ){
+            throw new IllegalArgumentException("ERROR");
+	}
+	int abrir = 1;
+	int fin = 1;
+	while ( abrir > 0 ){
+            if ( fin >= mivector.size() ){
+		throw new ArrayIndexOutOfBoundsException("Error: Verificar tus parentesis");
+            }
+            if ( mivector.get(fin).matches("[)]") ){
+		abrir--;
+            } else if ( mivector.get(fin).matches("[(]") ){
+		abrir++;
+            }
+            if ( abrir == 0 ){
+		break;
+            } else {
+		fin++;
+            }
+	}
+        return fin;
+    }
 }

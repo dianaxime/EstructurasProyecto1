@@ -13,14 +13,14 @@ import java.util.Vector;
  * @author DIANA
  */
 public class ManipuladordeStrings {
-    public String acoplar(List milist, String elemento){
+    public String Acoplar(List milist, String elemento){
         String nuevo="";
         for (int i=0; i<milist.size()-1;i++){
             nuevo+= milist.get(i).toString() + elemento;
         }
         return nuevo + milist.get(milist.size()-1).toString();
     }
-    public Vector<String> separar(String palabra){
+    public Vector<String> Separar(String palabra){
         Vector<String> mivector = new Vector<>();
         int i;
         for (i=0; i<palabra.length()-1; i++){
