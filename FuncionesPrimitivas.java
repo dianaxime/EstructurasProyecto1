@@ -41,4 +41,35 @@ public class FuncionesPrimitivas {
     public static Nodos PLUS ( SExpression exp ) throws Exception{
 	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) + Integer.parseInt(exp.data.evaluar(true).toString()));
     }
+    public static Nodos MINUS ( SExpression exp ) throws Exception{
+	return Nodos.crear(Integer.parseInt(exp.address.evaluate(true).toString()) - Integer.parseInt(exp.data.evaluate(true).toString()));
+    }
+    public static Nodos QUOTIENT ( SExpression exp ) throws Exception{
+	return Nodos.crear(Integer.parseInt(exp.address.evaluate(true).toString()) / Integer.parseInt(exp.data.evaluate(true).toString()));
+    }
+    public static Nodos TIMES ( SExpression exp ) throws Exception{
+	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) * Integer.parseInt(exp.data.evaluar(true).toString()));
+    }
+    public static Nodos REMAINDER ( SExpression exp ) throws Exception{
+	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) % Integer.parseInt(exp.data.evaluar(true).toString()));
+    }
+    public static Nodos LESS ( SExpression exp ) throws Exception{
+	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) < Integer.parseInt(exp.data.evaluar(true).toString()));
+    }
+    public static Nodos GREATER ( SExpression exp ) throws Exception{
+	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) > Integer.parseInt(exp.data.evaluar(true).toString()));
+    }
+    public static Nodos COND ( SExpression exp ) throws Exception {
+	SExpression a = new SExpression(exp.addressTokens);
+	if ( a.address.evaluar().toString().matches("T") ){
+            SExpression tmp = new SExpression(a.dataTokens);
+            return tmp.address.evaluar(true);
+	} else {
+            SExpression b = new SExpression(exp.dataTokens);
+            return COND(b);
+	}
+    }
+    public static Nodos QUOTE ( SExpression exp ) throws Exception {
+	return exp.address;
+    }
 }
