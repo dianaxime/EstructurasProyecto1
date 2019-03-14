@@ -72,4 +72,28 @@ public class FuncionesPrimitivas {
     public static Nodos QUOTE ( SExpression exp ) throws Exception {
 	return exp.address;
     }
+    public static Nodos DEFUN (SExpression exp) throws Exception {
+	String nombre = exp.address.toString();
+	if ( ! nombre.matches(Patrones.FUNCION) ){
+            throw new Exception("¡Error! Solo se pueden usar letras");
+	}
+	if ( FuncionesPrimitivas.primitivoExiste(nombre) ){
+            throw new Exception("¡Error! No se puede reescribir una funcion");
+	}
+        SExpression d = new SExpression(exp.dataTokens);
+	Nodos parametros = Nodos.create(d.addressTokens);
+	SExpression tmp = new SExpression(d.dataTokens);
+	Nodos cuerpo = Nodos.crear(tmp.addressTokens);
+	Environment.registerFunction(nombre, parametros, cuerpo);
+	return new Atom1(nombre);
+    }
+    private static boolean primitivoExiste(String nombre){
+	java.lang.reflect.Method metodo;
+	try{
+            metodo = FuncionesPrimitivas.class.getDeclaredMethod(nombre, SExpression.class);
+            return true;
+	} catch (SecurityException e){
+            return false;
+	}
+    }
 }
