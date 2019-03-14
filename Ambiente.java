@@ -6,6 +6,8 @@
 package proyecto1;
 
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  *
@@ -29,5 +31,42 @@ public class Ambiente {
     }
     public static boolean funcionExiste(String nombre){
 	return funcion.containsKey(nombre);
+    }
+    public static void separarTodo(Hashtable <String, Nodos> entorno){
+	Iterator iterador = entorno.entrySet().iterator();
+	while (iterador.hasNext()) {
+	    Map.Entry pairs = (Map.Entry)iterador.next();
+	    if ( variable.get(pairs.getKey()) == pairs.getValue() ){
+        	variable.remove(pairs.getKey());
+            }
+	    iterador.remove(); 
+        }
+    }
+    public static void separar(String nombre){
+	variable.remove(nombre);
+    }
+    public static Nodos getValor(String nombre) throws Exception{
+	if ( variable.containsKey(nombre) ){
+            return variable.get(nombre);
+	} else {
+            throw new Exception("¡Error! No existe esa variable");
+	}
+    }
+    public static void unirVariables(Hashtable <String, Nodos> nueva){
+	Iterator iterador = nueva.entrySet().iterator();
+	while (iterador.hasNext()) {
+	    Map.Entry pairs = (Map.Entry)iterador.next();
+            if ( variable.contains(pairs.getKey()) ){ // Do not let it store multiple things in one bucket
+		variable.remove(pairs.getKey());
+            }
+            variable.put( (String) pairs.getKey(), (Nodos) pairs.getValue() );
+	    iterador.remove(); // avoids a ConcurrentModificationException
+        }
+    }
+    public static Hashtable <String, Nodos> obtener(){
+	return new Hashtable <> (variable);
+    }
+    public static void modificarVariable(Hashtable <String, Nodos> modificada){
+	variable = new Hashtable <> (modificada);
     }
 }
