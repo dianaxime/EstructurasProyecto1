@@ -27,9 +27,10 @@ public abstract class Nodos {
     static Nodos crear(boolean exp){
 	return new Atom1(exp);
     }
-    static Nodos create(int exp){
+    static Nodos crear(int exp){
 	return new Atom1(exp);
     }
+    abstract Nodos evaluar() throws Exception;
     abstract Nodos evaluar(boolean flag) throws Exception;
     
     abstract Nodos evaluar(boolean flag, Hashtable <String, Nodos> env) throws Exception;
