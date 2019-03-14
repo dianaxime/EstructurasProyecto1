@@ -22,5 +22,9 @@ public class ArboldeAnalisis {
 	String rtn = raiz.evaluar().toString();
 	return rtn;
     }
+    protected String imprimirResultado(){
+	String resultado = raiz.toString();
+	return resultado;
+    }
 }
 
