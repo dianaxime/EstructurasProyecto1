@@ -84,7 +84,7 @@ public class FuncionesPrimitivas {
 	Nodos parametros = Nodos.create(d.addressTokens);
 	SExpression tmp = new SExpression(d.dataTokens);
 	Nodos cuerpo = Nodos.crear(tmp.addressTokens);
-	Environment.registerFunction(nombre, parametros, cuerpo);
+	Environment.registrarFuncion(nombre, parametros, cuerpo);
 	return new Atom1(nombre);
     }
     private static boolean primitivoExiste(String nombre){
