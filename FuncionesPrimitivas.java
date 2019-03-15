@@ -21,43 +21,43 @@ public class FuncionesPrimitivas {
 	return new Funciones(exp.direccion.evaluar(), concatenar.direccion.evaluar());
     }
     public static Nodos CAR ( Funciones exp ) throws Exception{
-		return exp.address;
+		return exp.direccion;
     }
     public static Nodos CDR ( Funciones exp )  throws Exception{
-	return exp.data;
+	return exp.datos;
     }
     public static Nodos ATOM ( Funciones exp ) throws Exception{
-	return Nodos.crear(exp.address.evaluate().toString().matches(Patrones.LETRAS));
+	return Nodos.crear(exp.direccion.evaluar().toString().matches(Patrones.LETRAS));
     }
     public static Nodos EQ ( Funciones exp ) throws Exception{
-	return Nodos.crear(exp.address.evaluar(true).toString().matches(exp.data.evaluar(true).toString()));
+	return Nodos.crear(exp.direccion.evaluar(true).toString().matches(exp.datos.evaluar(true).toString()));
     }
     public static Nodos NULL ( Funciones exp ) throws Exception{
-	return Nodos.crear(exp.data.evaluar().toString().matches("NIL"));
+	return Nodos.crear(exp.datos.evaluar().toString().matches("NIL"));
     }
     public static Nodos INT ( Funciones exp ) throws Exception{
-	return Nodos.crear(exp.address.evaluar(true).toString().matches(Patrones.OPERADOR));
+	return Nodos.crear(exp.direccion.evaluar(true).toString().matches(Patrones.OPERADOR));
     }
     public static Nodos PLUS ( Funciones exp ) throws Exception{
-	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) + Integer.parseInt(exp.data.evaluar(true).toString()));
+	return Nodos.crear(Integer.parseInt(exp.direccion.evaluar(true).toString()) + Integer.parseInt(exp.datos.evaluar(true).toString()));
     }
     public static Nodos MINUS ( Funciones exp ) throws Exception{
-	return Nodos.crear(Integer.parseInt(exp.address.evaluate(true).toString()) - Integer.parseInt(exp.data.evaluate(true).toString()));
+	return Nodos.crear(Integer.parseInt(exp.direccion.evaluar(true).toString()) - Integer.parseInt(exp.datos.evaluar(true).toString()));
     }
     public static Nodos QUOTIENT ( Funciones exp ) throws Exception{
-	return Nodos.crear(Integer.parseInt(exp.address.evaluate(true).toString()) / Integer.parseInt(exp.data.evaluate(true).toString()));
+	return Nodos.crear(Integer.parseInt(exp.direccion.evaluar(true).toString()) / Integer.parseInt(exp.datos.evaluar(true).toString()));
     }
     public static Nodos TIMES ( Funciones exp ) throws Exception{
-	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) * Integer.parseInt(exp.data.evaluar(true).toString()));
+	return Nodos.crear(Integer.parseInt(exp.direccion.evaluar(true).toString()) * Integer.parseInt(exp.datos.evaluar(true).toString()));
     }
     public static Nodos REMAINDER ( Funciones exp ) throws Exception{
-	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) % Integer.parseInt(exp.data.evaluar(true).toString()));
+	return Nodos.crear(Integer.parseInt(exp.direccion.evaluar(true).toString()) % Integer.parseInt(exp.datos.evaluar(true).toString()));
     }
     public static Nodos LESS ( Funciones exp ) throws Exception{
-	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) < Integer.parseInt(exp.data.evaluar(true).toString()));
+	return Nodos.crear(Integer.parseInt(exp.direccion.evaluar(true).toString()) < Integer.parseInt(exp.datos.evaluar(true).toString()));
     }
     public static Nodos GREATER ( Funciones exp ) throws Exception{
-	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) > Integer.parseInt(exp.data.evaluar(true).toString()));
+	return Nodos.crear(Integer.parseInt(exp.direccion.evaluar(true).toString()) > Integer.parseInt(exp.datos.evaluar(true).toString()));
     }
     public static Nodos COND ( Funciones exp ) throws Exception {
 	Funciones a = new Funciones(exp.direcciondefichas);

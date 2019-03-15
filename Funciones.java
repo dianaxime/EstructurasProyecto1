@@ -18,11 +18,11 @@ public class Funciones extends Nodos {
     protected Vector <String> fichasdedatos;
     protected Vector <String> direcciondefichas;
     
-    public Funciones(Vector <String> exp) throws Exception{
-	consHelper(exp);
+    public Funciones(Vector<String> exp) throws Exception{
+	constante(exp);
     }
     public Funciones(Nodos t) throws Exception{
-	consHelper(t.fichas);
+	constante(t.fichas);
     }
     public Funciones(Nodos a, Nodos d){
 	direccion = a;
@@ -120,9 +120,9 @@ public class Funciones extends Nodos {
     @Override
     protected Nodos evaluar(boolean flag, Hashtable <String, Nodos> env) throws Exception{	
 	Hashtable <String, Nodos> oldVars = Ambiente.getVarTable();
-	Environment.mergeVars(env);
+	Ambiente.mergeVars(env);
 	Nodos rtn = evaluar(flag);
-	Environment.setVars(oldVars);
+	Ambiente.setVars(oldVars);
 	return rtn;
     }
     @Override
@@ -130,19 +130,19 @@ public class Funciones extends Nodos {
 	String a = direccion.evaluar().toString();
 	Funciones parametros;
 	Nodos rtn;
-        if ( flag && a.matches(Patrones.NUMERIC_ATOM) ){
+        if ( flag && a.matches(Patrones.OPERADOR) ){
             return direccion.evaluar();
 	} else if ( a.matches("NIL") || a.matches("T") ){
-            return a.matches("NIL") ? Primitives.NIL() : Primitives.T();
-	} else if ( Environment.varIsDefined(a) ){
-            return Environment.getVarValue(a);
-	} else if ( Environment.functionIsDefined(a) ){
-            return Environment.executeFunction(a, TreeNode.create(dataTokens));
+            return a.matches("NIL") ? FuncionesPrimitivas.NIL() : FuncionesPrimitivas.T();
+	} else if ( Ambiente.varIsDefined(a) ){
+            return Ambiente.getVarValue(a);
+	} else if ( Ambiente.functionIsDefined(a) ){
+            return Ambiente.executeFunction(a, TreeNode.create(dataTokens));
 	} else if ( a.matches("CAR") || a.matches("CDR") ){
-			SExpression s;
-			if ( data.isList() ){
-				s = new SExpression(dataTokens);
-				s = new SExpression(s.address.evaluate().tokens);
+			Ambiente s;
+			if ( datos.isList() ){
+				s = new Funciones(fichasdedatos);
+				s = new Funciones(s.direccion.evaluar().fichas);
 				// s = new SExpression(s.evaluate().tokens);
 			} else {
 				s = new SExpression(dataTokens);
