@@ -25,6 +25,42 @@ public class Lisp {
         }
         return maxi;
     }
+    public boolean mayor(int[] miarray){
+        int mayor= miarray[0];
+        for (int i=1; i<miarray.length; i++){
+            if (miarray[i]>=mayor){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean menor(int[] miarray){
+        int menor= miarray[0];
+        for (int i=1; i<miarray.length; i++){
+            if (miarray[i]<=menor){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean equal(int[] miarray){
+        int comparar= miarray[0];
+        for (int i=1; i<miarray.length; i++){
+            if (miarray[i]!=comparar){
+                return false;
+            }
+        }
+        return true;
+    }
+    //verifica si todos son verdaderos o falsos
+    public boolean cond(boolean[] miarray){
+        for (int i=0; i<miarray.length; i++){
+            if (miarray[i]==false){
+                return false;
+            }
+        }
+        return true;
+    }
     
      // Obtener el numero menor 
     public double min(int[] miarray){
@@ -39,28 +75,6 @@ public class Lisp {
         }
         return mini;
     }
-   /* public int calculate (int num1, int num2, String op){
-        //recibe dos numeros y un operador 
-        //dependiendo del operador asi sera la operacion que realice
-        // en resta y division se intercambian los operandos por el orden de las operaciones 
-        int resultado;
-        resultado = 0;
-        switch (op){
-            case "+":
-                resultado = num1 + num2;
-                break;
-            case "-":
-                resultado = num2 - num1;
-                break;
-            case "*":
-                resultado = num1 * num2;
-                break;
-            case "/":
-                resultado = num2 / num1;
-                break;
-        }
-        return resultado;
-    }*/
     public double suma (int[] miarray, int n){
         if (n==0){
             return miarray[n];
@@ -130,13 +144,6 @@ public class Lisp {
         }
         return result;
     }
-    public boolean equal(int num1, int num2){
-        boolean result = false;
-        if (num1==num2){
-            result = true;
-        }
-        return result;
-    }
     public int expt(int num1, int num2){
         int result = 1;
         for (int i=0; i<Math.abs(num2); i++){
@@ -159,5 +166,8 @@ public class Lisp {
             result = i*i;
         } while(num>=result);
         return i;
+    }
+    public String TorNIL(boolean valor){
+        return valor ? "T": "NIL";
     }
 }

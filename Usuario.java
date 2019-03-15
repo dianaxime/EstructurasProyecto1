@@ -48,7 +48,7 @@ public class Usuario {
     }
     private Hashtable <String, Nodos> enlazar (Nodos exp) throws Exception{
 	if ( ! exp.isList() && !exp.toString().matches("NIL") ){
-            throw new Exception("Error! Parametros invalidos para: " + nombre);
+            throw new Exception("¡Error! Parametros invalidos para: " + nombre);
 	}
 	Hashtable <String, Nodos> amb = new Hashtable <> ();
         if ( ! exp.isList() ){

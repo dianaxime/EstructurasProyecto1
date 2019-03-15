@@ -56,11 +56,11 @@ public class Ambiente {
 	Iterator iterador = nueva.entrySet().iterator();
 	while (iterador.hasNext()) {
 	    Map.Entry pairs = (Map.Entry)iterador.next();
-            if ( variable.contains(pairs.getKey()) ){ // Do not let it store multiple things in one bucket
+            if ( variable.contains(pairs.getKey()) ){ 
 		variable.remove(pairs.getKey());
             }
             variable.put( (String) pairs.getKey(), (Nodos) pairs.getValue() );
-	    iterador.remove(); // avoids a ConcurrentModificationException
+	    iterador.remove(); 
         }
     }
     public static Hashtable <String, Nodos> obtener(){

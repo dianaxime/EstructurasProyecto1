@@ -44,7 +44,7 @@ public class Funciones extends Nodos {
     }
     
     private void constante(Vector <String> exp) throws Exception{
-	if ( exp.size() > 0 && exp.get(0).matches("[(]") ){ // some sanity checking for now
+	if ( exp.size() > 0 && exp.get(0).matches("[(]") ){ 
             int i = 1;
             int inicio = 3;
             if ( "(".equals(exp.get(i)) ){
