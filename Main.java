@@ -158,11 +158,15 @@ public class Main extends javax.swing.JFrame {
 	    Descifrador p = new Descifrador(l.Obtenersimbolos());
             p.evaluacion();
 	} catch (IOException e){
-            System.out.println("Fin...");
-            System.out.println(e);
+            //System.out.println("Fin...");
+            jTextArea1.append(e + "\n");
+            jTextArea1.append("Fin..." + "\n");
+            //System.out.println(e);
     	} catch (Exception e){	
-            System.out.println(e);
-            System.out.println("¡Error!");
+            jTextArea1.append(e + "\n");
+            jTextArea1.append("¡Error!" + "\n");
+            //System.out.println(e);
+            //System.out.println("¡Error!");
             /*if ( args.length > 0 && args[0].matches("-d") ){
             System.out.println(e.getMessage());
 	    e.printStackTrace();*/
@@ -210,7 +214,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    public static javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

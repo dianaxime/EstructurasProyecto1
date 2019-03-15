@@ -33,7 +33,7 @@ public class Descifrador {
     }
     public void evaluacion() throws Exception{
 	for ( int i = 0; i < declaraciones.size(); i++ ){
-            System.out.println(declaraciones.get(i).evaluacion());
+            Main.jTextArea1.append(declaraciones.get(i).evaluacion() + "\n");
 	}
     }
     private Vector <String> convertir(Vector <String> exp){
