@@ -118,11 +118,11 @@ public class Funciones extends Nodos {
 	return evaluar(false, env);
     }
     @Override
-    protected Nodos evaluar(boolean flag, Hashtable <String, Nodos> env) throws Exception{	
-	Hashtable <String, Nodos> oldVars = Ambiente.getVarTable();
-	Ambiente.mergeVars(env);
+    protected Nodos evaluar(boolean flag, Hashtable <String, Nodos> amb) throws Exception{	
+	Hashtable <String, Nodos> antigua = Ambiente.obtener();
+	Ambiente.unirVariables(amb);
 	Nodos rtn = evaluar(flag);
-	Ambiente.setVars(oldVars);
+	Ambiente.modificarVariable(antigua);
 	return rtn;
     }
     @Override
@@ -134,35 +134,42 @@ public class Funciones extends Nodos {
             return direccion.evaluar();
 	} else if ( a.matches("NIL") || a.matches("T") ){
             return a.matches("NIL") ? FuncionesPrimitivas.NIL() : FuncionesPrimitivas.T();
-	} else if ( Ambiente.varIsDefined(a) ){
-            return Ambiente.getVarValue(a);
-	} else if ( Ambiente.functionIsDefined(a) ){
-            return Ambiente.executeFunction(a, TreeNode.create(dataTokens));
+	} else if ( Ambiente.funcionExiste(a) ){
+            return Ambiente.getValor(a);
+	} else if ( Ambiente.funcionExiste(a) ){
+            return Ambiente.ejecutarFuncion(a, Nodos.crear(fichasdedatos));
 	} else if ( a.matches("CAR") || a.matches("CDR") ){
-			Ambiente s;
-			if ( datos.isList() ){
-				s = new Funciones(fichasdedatos);
-				s = new Funciones(s.direccion.evaluar().fichas);
-				// s = new SExpression(s.evaluate().tokens);
-			} else {
-				s = new SExpression(dataTokens);
-			}
-			params = s;
-		} else if ( a.matches("DEFUN") ){
-			return Primitives.DEFUN((SExpression) data);
-		} else {
-			params = (SExpression) data;
-		}
-
-		try{
-			rtn = invokePrimitive(a, params);
-			
-			
-			return rtn;
-		} catch (Exception e){
-			throw e;
-			// throw new Exception("Error! Undefined literal: " + toString());
-			// throw new Exception("Error!");
-		}
+            Funciones s;
+            if ( datos.isList() ){
+                s = new Funciones(fichasdedatos);
+                s = new Funciones(s.direccion.evaluar().fichas);
+            } else {
+                s = new Funciones(fichasdedatos);
+            }
+        parametros = s;
+	} else if ( a.matches("DEFUN") ){
+            return FuncionesPrimitivas.DEFUN((Funciones) datos);
+	} else {
+            parametros = (Funciones) datos;
+	}
+	try{
+            rtn = invocar(a, parametros);
+            return rtn;
+	} catch (Exception e){
+            throw e;
+	}
+    }
+    private Nodos invocar(String name, Funciones obj) throws Exception{
+	java.lang.reflect.Method m;
+        m = FuncionesPrimitivas.class.getDeclaredMethod(name, Funciones.class);
+	m.setAccessible(true);
+	Object o = m.invoke(null, obj);
+	if ( o.toString().matches("true") ){
+            return new Atom1("T");
+	} else if ( o.toString().matches("false") ){
+            return new Atom1("NIL");
+        } else {
+            return (Nodos) o;
+	}
     }
 }
