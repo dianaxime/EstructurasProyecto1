@@ -17,7 +17,7 @@ public abstract class Nodos {
     protected Vector <String> fichas = new Vector <> ();
     static Nodos crear(Vector <String> exp) throws Exception{
         if ( exp.size() > 0 && exp.get(0).matches("[(]") ){
-            return new SExpression(exp);
+            return new Funciones(exp);
         } else if ( exp.size() > 0 ){
             return new Atom1(exp.get(0));
         } else {

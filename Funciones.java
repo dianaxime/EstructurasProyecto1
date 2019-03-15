@@ -117,4 +117,52 @@ public class Funciones extends Nodos {
     protected Nodos evaluar(Hashtable <String, Nodos> env) throws Exception{
 	return evaluar(false, env);
     }
+    @Override
+    protected Nodos evaluar(boolean flag, Hashtable <String, Nodos> env) throws Exception{	
+	Hashtable <String, Nodos> oldVars = Ambiente.getVarTable();
+	Environment.mergeVars(env);
+	Nodos rtn = evaluar(flag);
+	Environment.setVars(oldVars);
+	return rtn;
+    }
+    @Override
+    protected Nodos evaluar( boolean flag ) throws Exception{
+	String a = direccion.evaluar().toString();
+	Funciones parametros;
+	Nodos rtn;
+        if ( flag && a.matches(Patrones.NUMERIC_ATOM) ){
+            return direccion.evaluar();
+	} else if ( a.matches("NIL") || a.matches("T") ){
+            return a.matches("NIL") ? Primitives.NIL() : Primitives.T();
+	} else if ( Environment.varIsDefined(a) ){
+            return Environment.getVarValue(a);
+	} else if ( Environment.functionIsDefined(a) ){
+            return Environment.executeFunction(a, TreeNode.create(dataTokens));
+	} else if ( a.matches("CAR") || a.matches("CDR") ){
+			SExpression s;
+			if ( data.isList() ){
+				s = new SExpression(dataTokens);
+				s = new SExpression(s.address.evaluate().tokens);
+				// s = new SExpression(s.evaluate().tokens);
+			} else {
+				s = new SExpression(dataTokens);
+			}
+			params = s;
+		} else if ( a.matches("DEFUN") ){
+			return Primitives.DEFUN((SExpression) data);
+		} else {
+			params = (SExpression) data;
+		}
+
+		try{
+			rtn = invokePrimitive(a, params);
+			
+			
+			return rtn;
+		} catch (Exception e){
+			throw e;
+			// throw new Exception("Error! Undefined literal: " + toString());
+			// throw new Exception("Error!");
+		}
+    }
 }

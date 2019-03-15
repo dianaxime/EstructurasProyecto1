@@ -16,81 +16,81 @@ public class FuncionesPrimitivas {
     public static Nodos NIL(){ 
 	return new Atom1(false); 
     }
-    public static SExpression CONS ( SExpression exp ) throws Exception {
-	SExpression concatenar = new SExpression(exp.dataTokens);
-	return new SExpression(exp.address.evaluar(), concatenar.address.evaluar());
+    public static Funciones CONS ( Funciones exp ) throws Exception {
+	Funciones concatenar = new Funciones(exp.fichasdedatos);
+	return new Funciones(exp.direccion.evaluar(), concatenar.direccion.evaluar());
     }
-    public static Nodos CAR ( SExpression exp ) throws Exception{
+    public static Nodos CAR ( Funciones exp ) throws Exception{
 		return exp.address;
     }
-    public static Nodos CDR ( SExpression exp )  throws Exception{
+    public static Nodos CDR ( Funciones exp )  throws Exception{
 	return exp.data;
     }
-    public static Nodos ATOM ( SExpression exp ) throws Exception{
+    public static Nodos ATOM ( Funciones exp ) throws Exception{
 	return Nodos.crear(exp.address.evaluate().toString().matches(Patrones.LETRAS));
     }
-    public static Nodos EQ ( SExpression exp ) throws Exception{
+    public static Nodos EQ ( Funciones exp ) throws Exception{
 	return Nodos.crear(exp.address.evaluar(true).toString().matches(exp.data.evaluar(true).toString()));
     }
-    public static Nodos NULL ( SExpression exp ) throws Exception{
+    public static Nodos NULL ( Funciones exp ) throws Exception{
 	return Nodos.crear(exp.data.evaluar().toString().matches("NIL"));
     }
-    public static Nodos INT ( SExpression exp ) throws Exception{
+    public static Nodos INT ( Funciones exp ) throws Exception{
 	return Nodos.crear(exp.address.evaluar(true).toString().matches(Patrones.OPERADOR));
     }
-    public static Nodos PLUS ( SExpression exp ) throws Exception{
+    public static Nodos PLUS ( Funciones exp ) throws Exception{
 	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) + Integer.parseInt(exp.data.evaluar(true).toString()));
     }
-    public static Nodos MINUS ( SExpression exp ) throws Exception{
+    public static Nodos MINUS ( Funciones exp ) throws Exception{
 	return Nodos.crear(Integer.parseInt(exp.address.evaluate(true).toString()) - Integer.parseInt(exp.data.evaluate(true).toString()));
     }
-    public static Nodos QUOTIENT ( SExpression exp ) throws Exception{
+    public static Nodos QUOTIENT ( Funciones exp ) throws Exception{
 	return Nodos.crear(Integer.parseInt(exp.address.evaluate(true).toString()) / Integer.parseInt(exp.data.evaluate(true).toString()));
     }
-    public static Nodos TIMES ( SExpression exp ) throws Exception{
+    public static Nodos TIMES ( Funciones exp ) throws Exception{
 	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) * Integer.parseInt(exp.data.evaluar(true).toString()));
     }
-    public static Nodos REMAINDER ( SExpression exp ) throws Exception{
+    public static Nodos REMAINDER ( Funciones exp ) throws Exception{
 	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) % Integer.parseInt(exp.data.evaluar(true).toString()));
     }
-    public static Nodos LESS ( SExpression exp ) throws Exception{
+    public static Nodos LESS ( Funciones exp ) throws Exception{
 	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) < Integer.parseInt(exp.data.evaluar(true).toString()));
     }
-    public static Nodos GREATER ( SExpression exp ) throws Exception{
+    public static Nodos GREATER ( Funciones exp ) throws Exception{
 	return Nodos.crear(Integer.parseInt(exp.address.evaluar(true).toString()) > Integer.parseInt(exp.data.evaluar(true).toString()));
     }
-    public static Nodos COND ( SExpression exp ) throws Exception {
-	SExpression a = new SExpression(exp.addressTokens);
-	if ( a.address.evaluar().toString().matches("T") ){
-            SExpression tmp = new SExpression(a.dataTokens);
-            return tmp.address.evaluar(true);
+    public static Nodos COND ( Funciones exp ) throws Exception {
+	Funciones a = new Funciones(exp.direcciondefichas);
+	if ( a.direccion.evaluar().toString().matches("T") ){
+            Funciones tmp = new Funciones(a.fichasdedatos);
+            return tmp.direccion.evaluar(true);
 	} else {
-            SExpression b = new SExpression(exp.dataTokens);
+            Funciones b = new Funciones(exp.fichasdedatos);
             return COND(b);
 	}
     }
-    public static Nodos QUOTE ( SExpression exp ) throws Exception {
-	return exp.address;
+    public static Nodos QUOTE ( Funciones exp ) throws Exception {
+	return exp.direccion;
     }
-    public static Nodos DEFUN (SExpression exp) throws Exception {
-	String nombre = exp.address.toString();
+    public static Nodos DEFUN (Funciones exp) throws Exception {
+	String nombre = exp.direccion.toString();
 	if ( ! nombre.matches(Patrones.FUNCION) ){
             throw new Exception("¡Error! Solo se pueden usar letras");
 	}
 	if ( FuncionesPrimitivas.primitivoExiste(nombre) ){
             throw new Exception("¡Error! No se puede reescribir una funcion");
 	}
-        SExpression d = new SExpression(exp.dataTokens);
-	Nodos parametros = Nodos.create(d.addressTokens);
-	SExpression tmp = new SExpression(d.dataTokens);
-	Nodos cuerpo = Nodos.crear(tmp.addressTokens);
-	Environment.registrarFuncion(nombre, parametros, cuerpo);
+        Funciones d = new Funciones (exp.fichasdedatos);
+	Nodos parametros = Nodos.crear(d.direcciondefichas);
+        Funciones tmp = new Funciones (d.fichasdedatos);
+	Nodos cuerpo = Nodos.crear(tmp.direcciondefichas);
+	Ambiente.registrarFuncion(nombre, parametros, cuerpo);
 	return new Atom1(nombre);
     }
-    private static boolean primitivoExiste(String nombre){
+    private static boolean primitivoExiste(String nombre) throws NoSuchMethodException{
 	java.lang.reflect.Method metodo;
 	try{
-            metodo = FuncionesPrimitivas.class.getDeclaredMethod(nombre, SExpression.class);
+            metodo = FuncionesPrimitivas.class.getDeclaredMethod(nombre, Funciones.class);
             return true;
 	} catch (SecurityException e){
             return false;
