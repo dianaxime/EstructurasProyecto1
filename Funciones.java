@@ -41,5 +41,36 @@ public class Funciones extends Nodos {
 	fichasdedatos = new Vector <> (exp.fichasdedatos);
 	direcciondefichas = new Vector <> (exp.direcciondefichas);
     }
-
+    
+    private void constante(Vector <String> exp) throws Exception{
+	if ( exp.size() > 0 && exp.get(0).matches("[(]") ){ // some sanity checking for now
+            int i = 1;
+            int inicio = 3;
+            if ( "(".equals(exp.get(i)) ){
+		int open = 1;
+                    while ( open > 0 && i < exp.size() ){
+			i++;
+			if ( "(".equals(exp.get(i)) ){
+                            open++;
+			} else if ( ")".equals(exp.get(i)) ){
+                            open--;
+			}
+                    }
+		inicio = i + 1;
+            }
+            i = inicio > 3 ? exp.indexOf(".", inicio) : 2;
+            direcciondefichas = new Vector <>(exp.subList(1,i));
+            direccion = Nodos.crear(direcciondefichas);
+            fichasdedatos = new Vector <>(exp.subList(i+1, exp.size() - 1));
+            datos = Nodos.crear(fichasdedatos);
+            fichas = new Vector <> ();
+            fichas.add("(");
+            fichas.addAll(direcciondefichas);
+            fichas.add(".");
+            fichas.addAll(fichasdedatos);
+            fichas.add(")");
+        } else {
+            throw new Exception("¡Error! Expresion invalida: " + exp.toString());
+        }
+    }
 }
