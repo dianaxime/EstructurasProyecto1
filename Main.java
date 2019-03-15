@@ -5,6 +5,8 @@
  */
 package proyecto1;
 
+import java.io.IOException;
+
 /**
  *
  * @author DIANA
@@ -93,7 +95,7 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //Toma el texto de JtextField
-        String datos= jTextField1.getText();
+        /*String datos= jTextField1.getText();
         //Instancia Lisp
         Lisp milisp;
         milisp = new Lisp();
@@ -149,7 +151,23 @@ public class Main extends javax.swing.JFrame {
         //captura erroes de division entre cero, no encuentre el archivo o que no sea un numero
         catch(ArithmeticException | NumberFormatException e){
             
-        }
+        }*/
+        try{
+            //System.in
+	    Analizador l = new Analizador(jTextField1.getText());
+	    Descifrador p = new Descifrador(l.Obtenersimbolos());
+            p.evaluacion();
+	} catch (IOException e){
+            System.out.println("Fin...");
+            System.out.println(e);
+    	} catch (Exception e){	
+            System.out.println(e);
+            System.out.println("¡Error!");
+            /*if ( args.length > 0 && args[0].matches("-d") ){
+            System.out.println(e.getMessage());
+	    e.printStackTrace();*/
+	}
+            //System.exit(3);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

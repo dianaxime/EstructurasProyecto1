@@ -92,7 +92,7 @@ public class FuncionesPrimitivas {
 	try{
             metodo = FuncionesPrimitivas.class.getDeclaredMethod(nombre, Funciones.class);
             return true;
-	} catch (SecurityException e){
+	} catch (NoSuchMethodException | SecurityException e){
             return false;
 	}
     }

@@ -28,7 +28,7 @@ public class Analizador {
         simbolos = Simbologia(miprograma);
     }
     public Analizador (String clasificar){
-        miprograma=clasificar;
+        miprograma= clasificar;
         simbolos = Simbologia(miprograma);
     }
     public Vector <String> Obtenersimbolos(){

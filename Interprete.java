@@ -16,15 +16,18 @@ public class Interprete {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         // TODO code application logic here
         try{
-	    Analizador l = new Analizador(System.in);
+            //System.in
+	    Analizador l = new Analizador("(EQ 3 3)");
 	    Descifrador p = new Descifrador(l.Obtenersimbolos());
 		p.evaluacion();
 	} catch (IOException e){
             System.out.println("Fin...");
+            System.out.println(e);
     	} catch (Exception e){	
+            System.out.println(e);
             System.out.println("¡Error!");
             if ( args.length > 0 && args[0].matches("-d") ){
             System.out.println(e.getMessage());
@@ -33,5 +36,5 @@ public class Interprete {
             System.exit(3);
     	}
     }
-    
+    */
 }
