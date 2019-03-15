@@ -5,6 +5,7 @@
  */
 package proyecto1;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 /**
@@ -72,5 +73,48 @@ public class Funciones extends Nodos {
         } else {
             throw new Exception("¡Error! Expresion invalida: " + exp.toString());
         }
+    }
+    @Override
+    protected boolean isList(){
+	return datos.toString().matches("NIL") || datos.isList();
+    }
+    @Override
+    public String toString(){
+	if ( isList() ){
+            try {
+		return toListString();
+            } catch (Exception e){
+                return "(" + direccion.toString() + " . " + datos.toString() + ")";
+            }
+	} else {
+            return "(" + direccion.toString() + " . " + datos.toString() + ")";
+	}
+    }
+    protected String toListString() throws Exception{
+	return "(" + ManipuladordeStrings.Acoplar(toVector() , " ") + ")";
+    }
+    private Vector <String> toVector() throws Exception{
+	if ( ! isList() ){
+            throw new Exception("¡Error!");
+	}
+	Vector <String> mivector = new Vector <> ();
+	Funciones tmp = this;
+	while ( tmp.isList() ){
+            mivector.add(tmp.direccion.toString());
+            try { 
+		tmp = new Funciones(tmp.fichasdedatos);
+            } catch (Exception e){
+		break;
+            }
+        }
+        return mivector;
+    }
+    @Override
+    protected Nodos evaluar() throws Exception{
+        return this.evaluar(false);
+    }
+    @Override
+    protected Nodos evaluar(Hashtable <String, Nodos> env) throws Exception{
+	return evaluar(false, env);
     }
 }
