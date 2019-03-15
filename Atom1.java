@@ -42,9 +42,10 @@ public class Atom1 extends Nodos {
             return letras;
 	}
     }
+    @Override
     protected Nodos evaluar() throws Exception{
-        if ( Environment.varIsDefined(letras) ){
-            return Environment.getVarValue(letras);
+        if ( Ambiente.funcionExiste(letras) ){
+            return Ambiente.getValor(letras);
 	} else {
             return this;
 	}
