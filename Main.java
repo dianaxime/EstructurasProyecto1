@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto1;
+//package proyecto1;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -113,9 +113,9 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //Toma el texto de JtextField
-        String datos= jTextField1.getText().toUpperCase();
+        //String datos= jTextField1.getText().toUpperCase();
         //Instancia Lisp
-        Lisp milisp;
+        /*Lisp milisp;
         milisp = new Lisp();
         UsoStack<String> lectura= new UsoStack<>();
         try{ 
@@ -129,7 +129,7 @@ public class Main extends javax.swing.JFrame {
                 lectura.push(partes[i]);
                 System.out.println(partes[i]);
             }*/
-            datos= datos.replace("(", " ( ");
+            /*datos= datos.replace("(", " ( ");
             datos= datos.replace(")", " ) ");
             //System.out.println(datos);
             Scanner scan1;//Crear scanner
@@ -138,15 +138,16 @@ public class Main extends javax.swing.JFrame {
                 String line = scan1.next();
                 lectura.push(line);
                 //System.out.println(line);
-            }
-            int k=0;
+            }*/
+            
             //Algunas de estas funcionan para Lisp.java
-            Vector<String> cant= new Vector<>();
+           /* Vector<String> cant= new Vector<>();
             Vector<Boolean> pred = new Vector<>();
-            int x=lectura.size();
+            
+            String n = null;
             while (lectura.size()>1){
-                String n=lectura.pop();
-                System.out.println(n);
+                n=lectura.pop();
+                //System.out.println(n);
                 switch (n){
                         case "DEFUN":
                             break;
@@ -201,7 +202,7 @@ public class Main extends javax.swing.JFrame {
                             break;
                         case "SQRT":
                             break;*/
-                        case "+":
+                        /*case "+":
                             unarray = new int[cant.size()];
                             for (int i=0; i<cant.size(); i++){
                                 unarray[i]=Integer.parseInt(cant.get(i));
@@ -262,8 +263,8 @@ public class Main extends javax.swing.JFrame {
                             break;
                     }
             }
-            jTextArea1.append(lectura.pop());
-            jTextArea1.append(milisp.TorNIL(pred.get(pred.size()-1)));
+            //jTextArea1.append(n+ "\n");
+            //jTextArea1.append(milisp.TorNIL(pred.get(pred.size()-1))+ "\n");
             //System.out.println(lectura.pop());
             //System.out.println(pred.get(pred.size()-1));
             
@@ -305,17 +306,17 @@ public class Main extends javax.swing.JFrame {
                //muestra el resultado de la linea de texto 
                jTextArea1.setEditable(true);
                jTextArea1.append(resultado + "\n");*/
-        }
+       /* }
         //captura erroes de division entre cero, no encuentre el archivo o que no sea un numero
         catch(ArithmeticException | NumberFormatException e){
             
-        }
+        }*/
         //esto funciona utilizando las otras clases del proyecto 
-       /* try{
+        try{
             //System.in
             /*Vector<String> vector;
             vector = ManipuladordeStrings.Separar(jTextField1.getText());*/
-	    /*Analizador l = new Analizador(jTextField1.getText().toUpperCase());
+	    Analizador l = new Analizador(jTextField1.getText().toUpperCase());
 	    Descifrador p = new Descifrador(l.Obtenersimbolos());
             p.evaluacion();
 	} catch (IOException e){
@@ -331,7 +332,7 @@ public class Main extends javax.swing.JFrame {
             /*if ( args.length > 0 && args[0].matches("-d") ){
             System.out.println(e.getMessage());
 	    e.printStackTrace();*/
-	/*}
+	}
             //System.exit(3);*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
