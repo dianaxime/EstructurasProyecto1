@@ -7,6 +7,7 @@ package proyecto1;
 
 import java.io.IOException;
 import java.util.Vector;
+import java.util.Scanner; //Importar scanner
 
 /**
  *
@@ -116,17 +117,99 @@ public class Main extends javax.swing.JFrame {
         //Instancia Lisp
         Lisp milisp;
         milisp = new Lisp();
-        try{
-                //elimina los espacios
-               String partes[] = datos.split(" ");
-               //for (String i : partes) System.out.print(i);
-               int[] unarray = new int[partes.length-1];
-               //recorre las partes 
-               for (int i=1; i<partes.length; i++){
-                   unarray[i-1]=Integer.parseInt(partes[i]); 
-                   //System.out.println(partes[i-1]);
+        UsoStack<String> lectura= new UsoStack<>();
+        try{ 
+            //elimina los "("
+            /*String partes[];
+            partes = datos.split("\\(");
+            //for (String i : partes) System.out.print(i);
+            //int[] unarray = new int[partes.length-1];
+            //recorre las partes 
+            for (int i=0; i<partes.length; i++){
+                lectura.push(partes[i]);
+                System.out.println(partes[i]);
+            }*/
+            datos= datos.replace("(", " ( ");
+            datos= datos.replace(")", " ) ");
+            //System.out.println(datos);
+            Scanner scan1;//Crear scanner
+            scan1 = new Scanner(datos);
+            while (scan1.hasNext()) {
+                String line = scan1.next();
+                lectura.push(line);
+                //System.out.println(line);
             }
-               int n=unarray.length-1;
+            int k=0;
+            Vector<String> cant= new Vector<>();
+            int x=lectura.size();
+            while (lectura.size()>1){
+                String n=lectura.pop();
+                System.out.println(n);
+                switch (n){
+                        case "DEFUN":
+                            break;
+                        case "MAX":
+                            int[] unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            //System.out.println(milisp.max(unarray));
+                            lectura.push(Integer.toString(milisp.max(unarray)));
+                            cant= new Vector<>();
+                            break;
+                        case "MIN":
+                            unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            //System.out.println(milisp.max(unarray));
+                            lectura.push(Integer.toString(milisp.min(unarray)));
+                            cant= new Vector<>();
+                            break;
+                        case "COND":
+                            break;
+                        case "EQUAL":
+                            break;
+                        case "CAR":
+                            break;
+                        case "CDR":
+                            break;
+                        case "MINUSP":
+                            break;
+                        case "PLUSP":
+                            break;
+                        case "ZEROP":
+                            break;
+                        /*case "EXPT":
+                            break;
+                        case "ABS":
+                            break;
+                        case "SQRT":
+                            break;*/
+                        case "+":
+                            break;
+                        case "-":
+                            break;
+                        case "*":
+                            break;
+                        case "/":
+                            break;
+                        case ">":
+                            break;
+                        case "<":
+                            break;
+                        case "(":
+                            break;
+                        case ")":
+                            break;
+                        default:
+                            cant.add(n);
+                            break;
+                    }
+            }
+            System.out.println(lectura.pop());
+            
+               /*int n=unarray.length-1;
                //for (int i : unarray) System.out.print(i);
                double resultado = 0;
                switch (partes[0]){
@@ -163,7 +246,7 @@ public class Main extends javax.swing.JFrame {
                    }
                //muestra el resultado de la linea de texto 
                jTextArea1.setEditable(true);
-               jTextArea1.append(resultado + "\n");
+               jTextArea1.append(resultado + "\n");*/
         }
         //captura erroes de division entre cero, no encuentre el archivo o que no sea un numero
         catch(ArithmeticException | NumberFormatException e){

@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public class Lisp {
      // Obtener el numero mayor 
-    public double max(int[] miarray){
+    public int max(int[] miarray){
         //supone que el primero es el mayor
         int maxi = miarray[0];
         //recorre todos los numeros buscando uno mayor
@@ -61,9 +61,8 @@ public class Lisp {
         }
         return true;
     }
-    
-     // Obtener el numero menor 
-    public double min(int[] miarray){
+    // Obtener el numero menor 
+    public int min(int[] miarray){
         //supone que el primero es el menor
         int mini = miarray[0];
         //recorre todos los numeros buscando uno menor
@@ -75,7 +74,7 @@ public class Lisp {
         }
         return mini;
     }
-    public double suma (int[] miarray, int n){
+    public int suma (int[] miarray, int n){
         if (n==0){
             return miarray[n];
         }
@@ -83,7 +82,7 @@ public class Lisp {
             return suma(miarray, n-1)+miarray[n];
         }
     }
-    public double resta (int[] miarray, int n){
+    public int resta (int[] miarray, int n){
         if (n==0){
             return miarray[n];
         }
@@ -91,7 +90,7 @@ public class Lisp {
             return resta(miarray, n-1)-miarray[n];
         }
     }
-    public double multiplicar (int[] miarray, int n){
+    public int multiplicar (int[] miarray, int n){
        if (n==0){
             return miarray[n];
         }
@@ -99,7 +98,7 @@ public class Lisp {
             return multiplicar(miarray, n-1)*miarray[n];
         }
     }
-    public double dividir (int[] miarray, int n){
+    public int dividir (int[] miarray, int n){
         if (n==0){
             return miarray[n];
         }
@@ -107,7 +106,7 @@ public class Lisp {
             return dividir(miarray, n-1)/miarray[n];
         }
     }
-    public double car(int[] miarray){
+    public int car(int[] miarray){
        int a;
        a=miarray[0];
        return a;
