@@ -13,6 +13,7 @@ import java.util.Vector;
  *
  * @author DIANA
  */
+//quitar los simbolos del programa y agregarlos a un vector para analizarlos posteiormente 
 public class Analizador {
     
     private String miprograma ="";
@@ -34,6 +35,7 @@ public class Analizador {
     public Vector <String> Obtenersimbolos(){
         return simbolos;
     }
+    //divide una cadena en trozos de acuerdo a la escritura de lisp
     public Vector<String> Simbologia (String palabra){
         int i = 0;
         Vector <String> claves = new Vector <>();

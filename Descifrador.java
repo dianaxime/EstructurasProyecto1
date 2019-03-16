@@ -11,6 +11,7 @@ import java.util.Vector;
  *
  * @author DIANA
  */
+//maneja el analisis y la evaluacion del programa 
 public class Descifrador {
     Vector <ArboldeAnalisis> declaraciones = new Vector <> ();
     public Descifrador(Vector <String> fichas) throws Exception{

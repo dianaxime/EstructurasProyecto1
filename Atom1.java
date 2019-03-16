@@ -9,7 +9,8 @@ import java.util.Hashtable;
 import java.util.Vector;
 //import javax.swing.tree.TreeNode;
 
-
+// elementos de un programa que son literales alfanumericos 
+//patrones para acceder a las funciones comunes 
 public class Atom1 extends Nodos {
     private String letras;
     @Override

@@ -12,6 +12,7 @@ import java.util.Vector;
  *
  * @author DIANA
  */
+// se encarga de la entrada, salida, evaluacion y construccion de varios puntos del programa
 public class Funciones extends Nodos {
     protected Nodos direccion;
     protected Nodos datos;

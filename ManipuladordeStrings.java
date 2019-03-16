@@ -12,7 +12,9 @@ import java.util.Vector;
  *
  * @author DIANA
  */
+//Ayudarse trabajando con cadenas y vectores de cadenas 
 public class ManipuladordeStrings {
+    //unir una lista 
     public static String Acoplar(List milist, String elemento){
         String nuevo="";
         for (int i=0; i<milist.size()-1;i++){
@@ -20,6 +22,7 @@ public class ManipuladordeStrings {
         }
         return nuevo + milist.get(milist.size()-1).toString();
     }
+    // un vector donde cada uno de los elementos de la cadena 
     public static Vector<String> Separar(String palabra){
         Vector<String> mivector = new Vector<>();
         int i;

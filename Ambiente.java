@@ -13,6 +13,8 @@ import java.util.Map;
  *
  * @author DIANA
  */
+
+//Maneja las variables y funciones del programa 
 public class Ambiente {
     public static java.util.Hashtable <String, Usuario> funcion = new Hashtable <String, Usuario>();
     public static java.util.Hashtable <String, Nodos> variable = new Hashtable <String, Nodos>();

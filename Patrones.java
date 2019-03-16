@@ -9,6 +9,7 @@ package proyecto1;
  *
  * @author DIANA
  */
+//Expresiones regulares y utiles 
 public class Patrones {
     public static final String LETRA = "[a-zA-Z]";
     public static final String LETRAS = "[a-zA-Z0-9]+";

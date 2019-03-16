@@ -9,6 +9,8 @@ package proyecto1;
  *
  * @author DIANA
  */
+
+//funciones incluidas en un lisp
 public class FuncionesPrimitivas {
     public static Nodos T(){ 
 	return new Atom1(true); 

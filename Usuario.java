@@ -12,6 +12,8 @@ import java.util.Vector;
  *
  * @author DIANA
  */
+
+//instrucciones definidas por el usuario 
 public class Usuario {
     protected String nombre;
     protected Vector <String> formalidades;

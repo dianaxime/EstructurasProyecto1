@@ -140,6 +140,7 @@ public class Main extends javax.swing.JFrame {
                 //System.out.println(line);
             }
             int k=0;
+            //Algunas de estas funcionan para Lisp.java
             Vector<String> cant= new Vector<>();
             Vector<Boolean> pred = new Vector<>();
             int x=lectura.size();
@@ -261,8 +262,10 @@ public class Main extends javax.swing.JFrame {
                             break;
                     }
             }
-            System.out.println(lectura.pop());
-            System.out.println(pred.get(pred.size()-1));
+            jTextArea1.append(lectura.pop());
+            jTextArea1.append(milisp.TorNIL(pred.get(pred.size()-1)));
+            //System.out.println(lectura.pop());
+            //System.out.println(pred.get(pred.size()-1));
             
                /*int n=unarray.length-1;
                //for (int i : unarray) System.out.print(i);
@@ -307,6 +310,7 @@ public class Main extends javax.swing.JFrame {
         catch(ArithmeticException | NumberFormatException e){
             
         }
+        //esto funciona utilizando las otras clases del proyecto 
        /* try{
             //System.in
             /*Vector<String> vector;
