@@ -169,8 +169,15 @@ public class Main extends javax.swing.JFrame {
                         case "COND":
                             break;
                         case "EQUAL":
+                            unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            //System.out.println(milisp.max(unarray));
+                            lectura.push(Boolean.toString(milisp.equal(unarray)));
+                            cant= new Vector<>();
                             break;
-                        case "CAR":
+                        /*case "CAR":
                             break;
                         case "CDR":
                             break;
@@ -180,19 +187,47 @@ public class Main extends javax.swing.JFrame {
                             break;
                         case "ZEROP":
                             break;
-                        /*case "EXPT":
+                        case "EXPT":
                             break;
                         case "ABS":
                             break;
                         case "SQRT":
                             break;*/
                         case "+":
+                            unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            //System.out.println(milisp.max(unarray));
+                            lectura.push(Integer.toString(milisp.suma(unarray, unarray.length)));
+                            cant= new Vector<>();
                             break;
                         case "-":
+                            unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            //System.out.println(milisp.max(unarray));
+                            lectura.push(Integer.toString(milisp.resta(unarray, unarray.length)));
+                            cant= new Vector<>();
                             break;
                         case "*":
+                            unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            //System.out.println(milisp.max(unarray));
+                            lectura.push(Integer.toString(milisp.multiplicar(unarray, unarray.length)));
+                            cant= new Vector<>();
                             break;
                         case "/":
+                            unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            //System.out.println(milisp.max(unarray));
+                            lectura.push(Integer.toString(milisp.dividir(unarray ,unarray.length)));
+                            cant= new Vector<>();
                             break;
                         case ">":
                             break;
