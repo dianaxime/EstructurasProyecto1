@@ -141,6 +141,7 @@ public class Main extends javax.swing.JFrame {
             }
             int k=0;
             Vector<String> cant= new Vector<>();
+            Vector<Boolean> pred = new Vector<>();
             int x=lectura.size();
             while (lectura.size()>1){
                 String n=lectura.pop();
@@ -167,14 +168,20 @@ public class Main extends javax.swing.JFrame {
                             cant= new Vector<>();
                             break;
                         case "COND":
+                            boolean[] unarray1 = new boolean[pred.size()];
+                            for (int i=0; i<pred.size(); i++){
+                                unarray1[i]= pred.get(i);
+                            }
+                            //System.out.println(milisp.max(unarray));
+                            pred.add(milisp.cond(unarray1));
+                            pred= new Vector<>();
                             break;
                         case "EQUAL":
                             unarray = new int[cant.size()];
                             for (int i=0; i<cant.size(); i++){
                                 unarray[i]=Integer.parseInt(cant.get(i));
                             }
-                            //System.out.println(milisp.max(unarray));
-                            lectura.push(Boolean.toString(milisp.equal(unarray)));
+                            pred.add((milisp.equal(unarray)));
                             cant= new Vector<>();
                             break;
                         /*case "CAR":
@@ -199,7 +206,7 @@ public class Main extends javax.swing.JFrame {
                                 unarray[i]=Integer.parseInt(cant.get(i));
                             }
                             //System.out.println(milisp.max(unarray));
-                            lectura.push(Integer.toString(milisp.suma(unarray, unarray.length)));
+                            lectura.push(Integer.toString(milisp.suma(unarray, unarray.length-1)));
                             cant= new Vector<>();
                             break;
                         case "-":
@@ -208,7 +215,7 @@ public class Main extends javax.swing.JFrame {
                                 unarray[i]=Integer.parseInt(cant.get(i));
                             }
                             //System.out.println(milisp.max(unarray));
-                            lectura.push(Integer.toString(milisp.resta(unarray, unarray.length)));
+                            lectura.push(Integer.toString(milisp.resta(unarray, unarray.length-1)));
                             cant= new Vector<>();
                             break;
                         case "*":
@@ -217,7 +224,7 @@ public class Main extends javax.swing.JFrame {
                                 unarray[i]=Integer.parseInt(cant.get(i));
                             }
                             //System.out.println(milisp.max(unarray));
-                            lectura.push(Integer.toString(milisp.multiplicar(unarray, unarray.length)));
+                            lectura.push(Integer.toString(milisp.multiplicar(unarray, unarray.length-1)));
                             cant= new Vector<>();
                             break;
                         case "/":
@@ -226,12 +233,24 @@ public class Main extends javax.swing.JFrame {
                                 unarray[i]=Integer.parseInt(cant.get(i));
                             }
                             //System.out.println(milisp.max(unarray));
-                            lectura.push(Integer.toString(milisp.dividir(unarray ,unarray.length)));
+                            lectura.push(Integer.toString(milisp.dividir(unarray ,unarray.length-1)));
                             cant= new Vector<>();
                             break;
                         case ">":
+                            unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            pred.add((milisp.equal(unarray)));
+                            cant= new Vector<>();
                             break;
                         case "<":
+                            unarray = new int[cant.size()];
+                            for (int i=0; i<cant.size(); i++){
+                                unarray[i]=Integer.parseInt(cant.get(i));
+                            }
+                            pred.add((milisp.equal(unarray)));
+                            cant= new Vector<>();
                             break;
                         case "(":
                             break;
