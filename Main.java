@@ -262,6 +262,7 @@ public class Main extends javax.swing.JFrame {
                     }
             }
             System.out.println(lectura.pop());
+            System.out.println(pred.get(pred.size()-1));
             
                /*int n=unarray.length-1;
                //for (int i : unarray) System.out.print(i);
